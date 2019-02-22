@@ -51,7 +51,7 @@ class ExampleApi(private val rpcOps: CordaRPCOps) {
 
     @GET
     @Path("enquiry-acc")
-    fun enquiryAcc(@QueryParam("accountNo") accountNo: String, @QueryParam("bic") bic: String): Response {
+    fun enquiryAcc(@QueryParam("10000000") accountNo: String, @QueryParam("ABC") bic: String): Response {
         if (accountNo == null) {
             return Response.status(BAD_REQUEST).entity("Query parameter 'accountNo' is required.\n").build()
         }
@@ -59,7 +59,10 @@ class ExampleApi(private val rpcOps: CordaRPCOps) {
             return Response.status(BAD_REQUEST).entity("Query parameter 'bic' is is required.\n").build()
         }
         val otherParty = rpcOps.partiesFromName(bic, exactMatch = true)
-        return Response.status(BAD_REQUEST).entity("Party named $bic cannot be found.\n").build()
+        if (otherParty.isEmpty()) {
+            return Response.status(BAD_REQUEST).entity("Party named $bic cannot be found.\n").build()
+        }
+
         val accUser = UserAccModel(accountNo = accountNo, bic = bic)
         return try {
             val tx = rpcOps.startTrackedFlow(::EnquireNameAccUserFlow, accUser).returnValue.getOrThrow()
