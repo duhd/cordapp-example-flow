@@ -31,7 +31,7 @@ class ClientRPC {
 
     fun clientPay(bic: String, accountNo: String): String {
         val accUser = UserAccModel(accountNo = accountNo, bic = bic)
-        return enquiryUserAccName(proxy!!, accUser!!)
+        return enquiryUserAccName(proxy!!, accUser)
 
     }
 
