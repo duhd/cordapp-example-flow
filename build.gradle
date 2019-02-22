@@ -1,11 +1,17 @@
 buildscript {
     ext {
-        corda_release_group = 'net.corda'
-        corda_release_version = '3.3-corda'
-        corda_gradle_plugins_version = '3.2.1'
-        kotlin_version = '1.1.60'
-        junit_version = '4.12'
+        //corda_release_group = 'net.corda'
+        //corda_release_version = '3.3-corda'
+        //corda_gradle_plugins_version = '3.2.1'
+        //kotlin_version = '1.1.60'
+        //junit_version = '4.12'
         quasar_version = '0.7.9'
+
+        ext.corda_release_group = 'com.r3.corda'
+        ext.corda_release_version = '3.2'
+        ext.corda_gradle_plugins_version = '4.0.25'
+        ext.kotlin_version = '1.3.21'
+        ext.junit_version = '4.12'
     }
 
     repositories {
@@ -13,14 +19,45 @@ buildscript {
         mavenCentral()
         jcenter()
         maven {
-            url 'https://ci-artifactory.corda.r3cev.com/artifactory/corda'
+            url 'https://ci-artifactory.corda.r3cev.com/artifactory/corda/'
+            
         }
     }
+    
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "net.corda.plugins:cordapp:$corda_gradle_plugins_version"
         classpath "net.corda.plugins:cordformation:$corda_gradle_plugins_version"
         classpath "net.corda.plugins:quasar-utils:$corda_gradle_plugins_version"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/exposed' }
+        maven { url 'https://jitpack.io' }
+        // [Option 1: Add Corda Enterprise binaries in ~/.m2/repository or C:\Documents and Settings\{your-username}\.m2]
+        // [Option 2: uncomment the following block and tweak it to point to resolve Corda Enterprise dependencies against your company's repository.]
+        // maven {
+        //     url 'https://repo.mycompany.com/maven2'
+        //     credentials {
+        //         username "<username>"
+        //         password "<password>"
+        //     }
+        // }
+        // [Option 3: uncomment the following block and tweak it to point to resolve Corda Enterprise dependencies against a custom path on your local file system.]
+        // maven {
+        //     url 'file://D:/path/to/local/directory'
+        // }
+        maven {
+            url 'E:/Users/Hoang Dinh Du/OneDrive/CordaCode/corda-enterprise/repository'
+        }
+        maven {
+            url '/home/corda/repository'
+        }
     }
 }
