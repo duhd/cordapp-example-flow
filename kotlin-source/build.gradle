@@ -72,7 +72,8 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         name "O=Notary,L=London,C=GB"
         notary = [validating : false]
         p2pPort 10006
-        cordapps = ["$corda_release_group:corda-finance:$corda_release_version"]
+        cordapps = ["$project.group:kotlin-source:$project.version"]
+        
     }
     node {
         name "O=PartyA,L=London,C=GB"
@@ -82,7 +83,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             adminAddress("localhost:10048")
         }
         webPort 10009
-        cordapps = ["$corda_release_group:corda-finance:$corda_release_version"]
+        cordapps = ["$project.group:kotlin-source:$project.version"]
         rpcUsers = [[user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
     node {
@@ -93,7 +94,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             adminAddress("localhost:10051")
         }
         webPort 10012
-        cordapps = ["$corda_release_group:corda-finance:$corda_release_version"]
+        cordapps = ["$project.group:kotlin-source:$project.version"]
         rpcUsers = [[user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
     node {
@@ -104,7 +105,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             adminAddress("localhost:10054")
         }
         webPort 10015
-        cordapps = ["$corda_release_group:corda-finance:$corda_release_version"]
+        cordapps = ["$project.group:kotlin-source:$project.version"]
         rpcUsers = [[user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
 }
