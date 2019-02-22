@@ -17,7 +17,7 @@ class EnquiryAccFlowTests {
 
     @Before
     fun setup() {
-        network = MockNetwork(listOf("com.example.contract", "com.example.schema"))
+        network = MockNetwork(listOf("com.example.flow"))
         a = network.createPartyNode()
         b = network.createPartyNode()
         // For real nodes this happens automatically, but we have to manually register the flow for tests.
