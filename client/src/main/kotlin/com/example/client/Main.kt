@@ -13,23 +13,22 @@ private class Main {
         private val LOGGER = LoggerFactory.getLogger(Main::class.java)
 
         private val client = ClientRPC()
-        private val BIC_TAG = "BankB"
-        private val ACCNO_TAG = "1111111"
-        private val NODE_TAG = "51.77.128.44:10003"
         private val USER_TAG = "corda"
         private val PASS_TAG = "not_blockchain"
 
     }
 
     fun main(args: Array<String>) {
-        require(args.size == 1) { "Usage: enquiry <node address>" }
-        val nodeAddress= args[0]
+        require(args.size == 3) { "Usage: enquiry <node address>" }
+        val nodeAddress = args[0]
+        val bic = args[1]
+        val accNo = args[2]
         setupTest(nodeAddress)
-        runTest()
+        runTest(bic, accNo)
         teardownTest()
     }
 
-    private fun setupTest(nodeAddress:String) {
+    private fun setupTest(nodeAddress: String) {
         val userRPC = USER_TAG
         val passRPC = PASS_TAG
         try {
@@ -40,9 +39,7 @@ private class Main {
         }
     }
 
-    private fun runTest() {
-        val bic = BIC_TAG
-        val accNo = ACCNO_TAG
+    private fun runTest(bic: String, accNo: String) {
         try {
             val responseMessage = client.clientEnquiry(bic, accNo)
             LOGGER.info("Response: $responseMessage")

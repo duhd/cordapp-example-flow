@@ -31,5 +31,5 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 task enquiry(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'com.example.client.MainKt'
-    args '51.77.128.44:10003'
+    args '51.77.128.44:10003 BankB 109000'
 }
