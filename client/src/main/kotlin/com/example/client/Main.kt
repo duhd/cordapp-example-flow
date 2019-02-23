@@ -20,6 +20,7 @@ private class Main {
 
     fun main(args: Array<String>) {
         //require(args.size == 3) { "Usage: enquiry <node address>" }
+        println(args)
         val nodeAddress = args[0]
         val bic = args[1]
         val accNo = args[2]
