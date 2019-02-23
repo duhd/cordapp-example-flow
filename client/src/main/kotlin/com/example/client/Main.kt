@@ -1,5 +1,7 @@
 package com.example.client
 
+import net.corda.core.utilities.NetworkHostAndPort
+import net.corda.nodeapi.internal.ArtemisMessagingComponent
 import org.slf4j.LoggerFactory
 
 fun main(args: Array<String>) {
@@ -20,17 +22,18 @@ private class Main {
     }
 
     fun main(args: Array<String>) {
-        setupTest()
+        require(args.size == 1) { "Usage: enquiry <node address>" }
+        val nodeAddress= args[0]
+        setupTest(nodeAddress)
         runTest()
         teardownTest()
     }
 
-    private fun setupTest() {
-        val node = NODE_TAG
+    private fun setupTest(nodeAddress:String) {
         val userRPC = USER_TAG
         val passRPC = PASS_TAG
         try {
-            client.connect(node, userRPC, passRPC)
+            client.connect(nodeAddress, userRPC, passRPC)
         } catch (e: Exception) {
             e.printStackTrace()
             throw RuntimeException("Error Connect RPC:", e)

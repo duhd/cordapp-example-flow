@@ -51,13 +51,12 @@ object ExternalAccountnameAPI {
 
         // Try to read config properties to get the approve redeem URI
         fun getAccountNameURI(value: String): String {
-
             val prop = Properties()
             var input: InputStream? = null
 
             try {
-                input = FileInputStream("./config.properties")
-
+                //input = FileInputStream("./config.properties")
+                input = this.javaClass.getResource("/config.properties").openStream()
                 // load a properties file
                 prop.load(input)
                 val result = prop.getProperty(value)
