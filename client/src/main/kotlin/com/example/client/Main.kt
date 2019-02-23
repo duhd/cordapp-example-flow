@@ -1,6 +1,10 @@
 package com.example.client
 
+import net.corda.core.identity.CordaX500Name
 import org.slf4j.LoggerFactory
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) {
     Main().main(args)
@@ -23,8 +27,27 @@ private class Main {
         val nodeAddress = parameters[0]
         val bic = parameters[1]
         val accNo = parameters[2]
+
         setupTest(nodeAddress)
-        runTest(bic, accNo)
+
+        val executor: ExecutorService = Executors.newFixedThreadPool(512)
+
+        val forLoopMillisElapsed2 = measureTimeMillis {
+            for (i in 0..9999) {
+                val worker = Runnable {
+                    runTest(bic, accNo)
+                }
+                executor.execute(worker)
+
+            }
+
+            executor.shutdown()
+
+            while (!executor.isTerminated) {
+            }
+        }
+        println("forLoopMillisElapsed: $forLoopMillisElapsed2")
+
         teardownTest()
     }
 
