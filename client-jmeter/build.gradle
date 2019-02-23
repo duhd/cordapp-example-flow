@@ -3,7 +3,7 @@ apply plugin: 'net.corda.plugins.cordapp'
 apply plugin: 'net.corda.plugins.cordformation'
 apply plugin: 'net.corda.plugins.quasar-utils'
 
-//jar.baseName = "cordapp-example-flow"
+jar.baseName = "vnpay-example"
 jar.zip64 = true
 
 sourceSets {
@@ -18,7 +18,10 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     //testCompile "junit:junit:$junit_version"
-
+    
+    compile "org.jolokia:jolokia-core:1.6.0"
+    compile 'org.apache.jmeter:ApacheJMeter_java:5.0'
+    
     // Corda integration dependencies
     cordaCompile "$corda_release_group:corda-core:$corda_release_version"
     cordaCompile "$corda_release_group:corda-jackson:$corda_release_version"
@@ -30,7 +33,6 @@ dependencies {
     //testCompile "$corda_release_group:corda-node-driver:$corda_release_version"
 
     compile group: 'com.sun.jersey', name: 'jersey-client', version: '1.9.1'
-    compile 'org.apache.jmeter:ApacheJMeter_java:5.0'
 }
 
 
