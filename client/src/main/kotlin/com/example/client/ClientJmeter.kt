@@ -41,7 +41,7 @@ class ClientJmeter : AbstractJavaSamplerClient(), Serializable {
         try {
             sampleResult.sampleStart()
             if (method.equals("enquireAcc")) {
-                sampleResult.responseMessage = client.clientPay(bic, accNo)
+                sampleResult.responseMessage = client.clientEnquiry(bic, accNo)
             }
             sampleResult.sampleEnd()
             sampleResult.isSuccessful = java.lang.Boolean.TRUE

@@ -7,11 +7,11 @@ buildscript {
         //junit_version = '4.12'
         quasar_version = '0.7.9'
 
-        ext.corda_release_group = 'com.r3.corda'
-        ext.corda_release_version = '3.2'
-        ext.corda_gradle_plugins_version = '4.0.25'
-        ext.kotlin_version = '1.3.21'
-        ext.junit_version = '4.12'
+        corda_release_group = 'com.r3.corda'
+        corda_release_version = '3.2'
+        corda_gradle_plugins_version = '4.0.25'
+        kotlin_version = '1.3.21'
+        junit_version = '4.12'
     }
 
     repositories {

@@ -29,7 +29,7 @@ class ClientRPC {
         conn!!.notifyServerAndClose()
     }
 
-    fun clientPay(bic: String, accountNo: String): String {
+    fun clientEnquiry(bic: String, accountNo: String): String {
         val accUser = UserAccModel(accountNo = accountNo, bic = bic)
         return enquiryUserAccName(proxy!!, accUser)
 
