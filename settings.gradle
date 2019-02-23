@@ -1,2 +1,3 @@
 include 'kotlin-source'
 include 'client'
+include 'client-jmeter'
