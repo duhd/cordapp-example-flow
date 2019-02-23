@@ -55,8 +55,8 @@ object ExternalAccountnameAPI {
             var input: InputStream? = null
 
             try {
-                //input = FileInputStream("./config.properties")
-                input = this.javaClass.getResource("/config.properties").openStream()
+                input = FileInputStream("./config.properties")
+                //input = this.javaClass.getResource("/config.properties").openStream()
                 // load a properties file
                 prop.load(input)
                 val result = prop.getProperty(value)
