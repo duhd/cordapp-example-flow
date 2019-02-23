@@ -19,11 +19,12 @@ private class Main {
     }
 
     fun main(args: Array<String>) {
-        //require(args.size == 3) { "Usage: enquiry <node address>" }
+        require(args.size == 1) { "Usage: enquiry <node address>" }
         println(args[0])
-        val nodeAddress = args[0]
-        val bic = args[1]
-        val accNo = args[2]
+        val parameters = args[0].split(" ")
+        val nodeAddress = parameters[0]
+        val bic = parameters[1]
+        val accNo = parameters[2]
         setupTest(nodeAddress)
         runTest(bic, accNo)
         teardownTest()
