@@ -1,7 +1,5 @@
 package com.example.client
 
-import net.corda.core.utilities.NetworkHostAndPort
-import net.corda.nodeapi.internal.ArtemisMessagingComponent
 import org.slf4j.LoggerFactory
 
 fun main(args: Array<String>) {

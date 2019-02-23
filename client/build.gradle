@@ -13,7 +13,7 @@ sourceSets {
     }
 }
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     cordapp project(":kotlin-source")
     compile 'org.apache.jmeter:ApacheJMeter_java:5.0'
 }

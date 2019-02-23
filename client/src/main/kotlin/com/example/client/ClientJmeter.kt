@@ -15,7 +15,7 @@ class ClientJmeter : AbstractJavaSamplerClient(), Serializable {
         defaultParameters.addArgument(USER_TAG, "corda")
         defaultParameters.addArgument(PASS_TAG, "not_blockchain")
         defaultParameters.addArgument(BIC_TAG, "BankB")
-        defaultParameters.addArgument(ACCNO_TAG, "190200")
+        defaultParameters.addArgument(ACCNO_TAG, "109000")
         defaultParameters.addArgument(METHOD_TAG, "enquireAcc")
         return defaultParameters
     }
