@@ -24,12 +24,12 @@ object ExternalAPI {
         companion object {
             val LOGGER = LoggerFactory.getLogger(ExternalAPI::class.java)
             private val URL = getAccountNameURI("AccountNameURI")
-            private val mapper = ObjectMapper()
             val JSON = MediaType.parse("application/json;charset=utf-8")
         }
 
         fun queryAccountName(value: UserAccModel): UserAccModel {
             try {
+                val mapper = ObjectMapper()
                 val body = RequestBody.create(JSON, mapper.writeValueAsString(value))
                 val httpRequest = Request.Builder()
                         .url(URL)
@@ -49,6 +49,7 @@ object ExternalAPI {
                 val result = httpResponse.body().string()
                 return mapper.readValue<UserAccModel>(result)
             } catch (ex: Exception) {
+                LOGGER.error(ex.message)
                 return UserAccModel(accountNo = "", accountName = "", bic = "", X500Name = "")
             }
         }

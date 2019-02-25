@@ -30,7 +30,7 @@ private class Main {
 
         setupTest(nodeAddress)
 
-        val executor: ExecutorService = Executors.newFixedThreadPool(512)
+        val executor: ExecutorService = Executors.newFixedThreadPool(128)
 
         val forLoopMillisElapsed2 = measureTimeMillis {
             for (i in 0..9999) {
