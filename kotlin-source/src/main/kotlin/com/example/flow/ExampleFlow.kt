@@ -2,7 +2,6 @@ package com.example.flow
 
 import co.paralleluniverse.fibers.Suspendable
 import com.example.base.UserAccModel
-import com.example.external.ExternalAPI
 import com.example.external.ExternalAccountnameAPI
 import net.corda.core.flows.*
 import net.corda.core.utilities.ProgressTracker
@@ -66,7 +65,7 @@ class EnquireNameAccUserFlow(private val userAcc: UserAccModel) : FlowLogic<User
             val account: UserAccModel = session.receive<UserAccModel>().unwrap { it }
 
             progressTracker.currentStep = INVOKING_API_SERVICE
-            val AccountNameAPI = serviceHub.cordaService(ExternalAPI.Service::class.java)
+            val AccountNameAPI = serviceHub.cordaService(ExternalAccountnameAPI.Service::class.java)
             val result = AccountNameAPI.queryAccountName(account)
 
             progressTracker.currentStep = RETURNING_ACC

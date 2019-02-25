@@ -25,14 +25,13 @@ object ExternalAccountnameAPI {
         private companion object {
             val logger = loggerFor<Service>()
             val AccountNameURI = getAccountNameURI("AccountNameURI")
+            val client = Client.create()
+            val webResource = client.resource(AccountNameURI)
         }
 
         fun queryAccountName(value: UserAccModel): UserAccModel {
             try {
-                val client = Client.create()
 
-                logger.info("AccountName URI from properties " + AccountNameURI)
-                val webResource = client.resource(AccountNameURI)
                 val mapper = ObjectMapper()
                 val response = webResource.accept(MediaType.APPLICATION_JSON)
                         .type(MediaType.APPLICATION_JSON_TYPE)
