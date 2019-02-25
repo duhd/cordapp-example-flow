@@ -20,10 +20,10 @@ import javax.ws.rs.core.MediaType
 object ExternalAccountnameAPI {
 
     @CordaService
-    class Service(val services: ServiceHub) : SingletonSerializeAsToken() {
+    class Service() : SingletonSerializeAsToken() {
 
         private companion object {
-            val logger = loggerFor<Service>()
+            val logger = loggerFor<ExternalAccountnameAPI>()
         }
 
         fun queryAccountName(value: UserAccModel): UserAccModel {
