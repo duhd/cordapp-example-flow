@@ -66,7 +66,7 @@ class EnquireNameAccUserFlow(private val userAcc: UserAccModel) : FlowLogic<User
             val account: UserAccModel = session.receive<UserAccModel>().unwrap { it }
 
             progressTracker.currentStep = INVOKING_API_SERVICE
-            val AccountNameAPI = serviceHub.cordaService(ExternalAccountnameAPI.Service::class.java)
+            val AccountNameAPI = serviceHub.cordaService(ExternalAPI.Service::class.java)
             val result = AccountNameAPI.queryAccountName(account)
 
             progressTracker.currentStep = RETURNING_ACC
