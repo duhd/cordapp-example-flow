@@ -24,12 +24,13 @@ object ExternalAccountnameAPI {
 
         private companion object {
             val logger = loggerFor<Service>()
+            val AccountNameURI = getAccountNameURI("AccountNameURI")
         }
 
         fun queryAccountName(value: UserAccModel): UserAccModel {
             try {
                 val client = Client.create()
-                val AccountNameURI = getAccountNameURI("AccountNameURI")
+
                 logger.info("AccountName URI from properties " + AccountNameURI)
                 val webResource = client.resource(AccountNameURI)
                 val mapper = ObjectMapper()
@@ -49,35 +50,32 @@ object ExternalAccountnameAPI {
             }
         }
 
-        // Try to read config properties to get the approve redeem URI
-        fun getAccountNameURI(value: String): String {
-            val prop = Properties()
-            var input: InputStream? = null
+    }
+    // Try to read config properties to get the approve redeem URI
+    fun getAccountNameURI(value: String): String {
+        val prop = Properties()
+        var input: InputStream? = null
 
-            try {
-                input = FileInputStream("./config.properties")
-                //input = this.javaClass.getResource("/config.properties").openStream()
-                // load a properties file
-                prop.load(input)
-                val result = prop.getProperty(value)
-                logger.info("prop loaded " + result)
-                return result
-            } catch (ex: IOException) {
-                throw ex
-            } finally {
-                if (input != null) {
-                    try {
-                        input.close()
-                    } catch (ex: IOException) {
-                        ex.printStackTrace()
-                    }
-                } else {
-                    logger.info("Input from FileInputStream " + input.toString())
-                    throw IllegalArgumentException("config.properties not found or is null")
+        try {
+            input = FileInputStream("./config.properties")
+            //input = this.javaClass.getResource("/config.properties").openStream()
+            // load a properties file
+            prop.load(input)
+            val result = prop.getProperty(value)
+            return result
+        } catch (ex: IOException) {
+            throw ex
+        } finally {
+            if (input != null) {
+                try {
+                    input.close()
+                } catch (ex: IOException) {
+                    ex.printStackTrace()
                 }
+            } else {
+                throw IllegalArgumentException("config.properties not found or is null")
             }
         }
-
     }
 }
 
