@@ -3,6 +3,7 @@ package com.example.external
 import com.example.base.UserAccModel
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import net.corda.core.node.ServiceHub
 import net.corda.core.node.services.CordaService
 import net.corda.core.serialization.SingletonSerializeAsToken
 import java.io.FileInputStream
@@ -18,7 +19,7 @@ import org.slf4j.LoggerFactory
 object ExternalAPI {
 
     @CordaService
-    class ExternalAPI() : SingletonSerializeAsToken() {
+    class Service(val services: ServiceHub) : SingletonSerializeAsToken() {
 
         companion object {
             val LOGGER = LoggerFactory.getLogger(ExternalAPI::class.java)
